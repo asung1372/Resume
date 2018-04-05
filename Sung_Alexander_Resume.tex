@@ -1,0 +1,378 @@
+\documentclass{article}
+
+
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{titling}
+\usepackage{tabularx}
+\usepackage{xcolor}
+
+\pagenumbering{gobble} % disable page numbers
+
+\fancypagestyle{default}{
+  \fancyhf{}% No header/footer
+  \fancyfoot[R]{}% Right footer
+  \renewcommand{\headrulewidth}{0pt}% No header rule
+  \renewcommand{\footrulewidth}{0.0pt}% A footer rule
+}
+\fancypagestyle{last-page}{
+  \fancyhf{}% No header/footer
+  \fancyfoot[R]{Made in \LaTeX}% Centre footer
+  \renewcommand{\headrulewidth}{0pt}% No header rule
+  \renewcommand{\footrulewidth}{0.4pt}% A footer rule
+}
+\pagestyle{default}% Default page style
+\AtEndDocument{\thispagestyle{last-page}}% Page style at \end{document}
+
+\hypersetup{
+    colorlinks=true,
+    urlcolor=black,
+}
+
+\newcommand{\headersection}{
+	\begin{center}
+		\Huge\bfseries
+		\theauthor
+	\end{center}
+	
+	\begin{flushleft}
+		\begin{minipage}[t]{.50\textwidth}
+			\begin{flushright}
+				\begin{flushleft}
+					\normalsize\normalfont
+					\textbf{Website:} \url{aleksung.com} \\
+					\vspace{0.25em}
+					\textbf{LinkedIn:} \url{www.linkedin.com/in/sungalexander} \\
+					\vspace{0.25em}
+					\textbf{Github:} \url{https://github.com/asung1372} \\
+				\end{flushleft}
+			\end{flushright}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{.28\textwidth}
+			\begin{flushleft}
+				\vspace{0.25em}
+				\normalsize\normalfont
+				\textbf{Email:} alek6@vt.edu \\
+				\vspace{0.25em}
+				\textbf{Phone number:} 703-973-7257
+			\end{flushleft}
+		\end{minipage}
+	\end{flushleft}
+}
+
+\newcommand{\gensection}
+[1] 
+% arg1: section title
+{
+	\mdfsetup
+	{
+		innerleftmargin = 0.5em,
+		innerrightmargin = 0.5em,
+		innertopmargin = 0.5em,
+		innerbottommargin = 0.5em,
+		linecolor=black,
+		middlelinewidth=2pt, 
+		backgroundcolor=black!10,
+		align=center
+		roundcorner=1pt
+	}
+	\begin{mdframed}
+		\centering
+		\textbf{\Large\uppercase{#1}}
+	\end{mdframed}
+}
+
+\newcommand{\educationsection}
+[3]
+% arg 1: University
+% arg 2: Major
+% arg 3: Graduation date
+{
+	\hspace*{2.00em}
+	\textbf{\large{University ---}} #1 
+	\vspace{0.5em}
+	\\
+	\hspace*{2.00em}
+	\textbf{\large{Pursuing ---}} #2 
+	\vspace{0.5em}
+	\\
+	\hspace*{2.00em}
+	\textbf{\large{Expected Graduation Date ---}} #3 
+}
+
+\newcommand{\techsub}
+[1] 
+% arg1: subsection title
+{
+	\large
+	\hspace{0.30em}
+	\textbf{#1}
+	\vspace{0.50em}
+	\\
+}
+
+\newcommand{\techsubsub}
+[2] 
+% arg1: subsubsection title
+% arg2: items in comma-space separated form
+{
+	\normalsize
+	\hspace*{2.00em}
+	\begin{minipage}[t]{0.45\textwidth}
+		\begin{flushleft}
+			\textbf{#1 --- }
+			\vspace{0.5em}
+			\\
+		\end{flushleft}
+	\end{minipage}
+	\hspace*{4.5em}
+	\begin{minipage}[t]{0.75\textwidth}
+		\begin{flushleft}
+			#2
+		\end{flushleft}
+	\end{minipage}
+	\vspace{0.50em}
+	\\
+}
+
+\newcommand{\technicalsection} {
+	% BEGIN LEFT SECTION
+		\begin{minipage}[t]{0.5\textwidth}
+			\begin{flushleft}
+				\techsub{Languages}
+					\techsubsub{Programming}{C++, Java}
+					\techsubsub{Scripting}{Python, JavaScript, bash, MATLAB}
+					\techsubsub{Markup}{HTML, CSS, {\LaTeX}}
+					\techsubsub{API/Frameworks}{Android, OpenGL}
+			\end{flushleft}
+		\end{minipage}
+	% END LEFT SECTION
+		\hfill
+	% BEGIN: RIGHT SECTION
+		\begin{minipage}[t]{0.5\textwidth}
+			\begin{flushright}
+				\begin{flushleft}
+				\techsub{Software}
+					\techsubsub{Operating Systems}{Windows (10, 8.1, 7), Ubuntu (16.04, Server)}
+					\techsubsub{Work Flow}{Unix Command Line, Git, Vim, Make}
+					\techsubsub{Platforms}{Amazon Web Services, Wordpress}
+					\techsubsub{Multimedia}{Blender (3D modeling), Adobe Photoshop}
+				\end{flushleft}
+			\end{flushright}
+		\end{minipage}
+	% END RIGHT SECTION
+}
+
+\newcommand{\workitem}
+[1]
+% arg 1: bullet
+{
+	\item
+	#1
+	\vspace{-1.60em}
+	\\
+}
+
+\newcommand{\worksub}
+[4]
+% arg 1: Title
+% arg 2: Location
+% arg 3: Position
+% arg 4: Dates
+{
+	\newcolumntype{R}{>{\raggedleft\arraybackslash}X} % flush right alignment
+	\hspace*{1.5em}
+		\begin{tabularx}
+			{0.95\textwidth}
+			{l R}
+			\textbf{\large{#1}} & #2 \\
+			\textit{#3} & \textit{#4} \\
+		\end{tabularx}
+		\vspace{0.50em}
+		\\
+}
+
+\newcommand{\worksection}{
+	\begin{flushleft}
+%----------------------------------------------------------------------------------
+		\worksub
+			{NREIP ASEE Internship}
+			{Washington DC}
+			{Research Intern}
+			{May 2016 - August 2016}
+		\hspace*{2.0em}
+		\begin{minipage}{0.9\textwidth}
+			\begin{itemize}
+				\normalsize
+
+				\workitem{Worked in Applied Research for Artificial Intelligence department of the Naval Research Laboratory}
+
+				\workitem{Explored methods for incorporating probabilistic graphical models (PGMs) with convoluted neural networks in order to increase accuracy in vision detection problems}
+
+				\workitem{Concluded using PGMs oversaturate weights in convoluted neural networks, rendering them useless}
+			\end{itemize}
+		\end{minipage}
+		\vspace{1.75em}
+		\\
+%----------------------------------------------------------------------------------
+		\worksub
+			{System Software Research Group}
+			{Blacksburg, VA}
+			{Research Assistant}
+			{September 2015 - May 2016}
+		\hspace*{2.0em}
+		\begin{minipage}{0.9\textwidth}
+			\begin{itemize}
+				\normalsize
+
+				\workitem{Assisted Virginia Tech research group with development of Popcorn Linux, an operating system designed for Instruction Set Architecture heterogeneous hardware, multi-core architectures, and optimizing scalability}
+
+				\workitem{Performed benchmark setup, data harvesting, and presented work at conferences}
+			\end{itemize}
+		\end{minipage}
+		\vspace{1.75em}
+		\\
+%----------------------------------------------------------------------------------
+		\worksub
+			{Multi-Camera System for 3D Capture of Bat Flight}
+			{Blacksburg, VA}
+			{Consultant}
+			{September 2015 - December 2015}
+		\hspace*{2.0em}
+		\begin{minipage}{0.9\textwidth}
+			\begin{itemize}
+				\normalsize
+
+				\workitem{Helped with Virgina Tech PhD student's dissertation project involving manipulation of 40 GoPro cameras with microcontrollers to capture and analyze path and wing-shape of a bat during flight}
+
+				\workitem{Discussed camera control systems, synchronization, image processing, and data harvesting}
+			\end{itemize}
+		\end{minipage}
+		\vspace{1.75em}
+		\\
+%----------------------------------------------------------------------------------
+		\worksub
+			{UCLA Neuroscience}
+			{Los Angeles, California}
+			{Lab Assistant}
+			{July 2014 - August 2014}
+		\hspace*{2.0em}
+		\begin{minipage}{0.9\textwidth}
+			\begin{itemize}
+				\normalsize
+
+				\workitem{Assisted in Neuroscience department of University of California, Los Angeles}
+
+				\workitem{Helped in a study linking sex genes to the severity of the effects of multiple sclerosis}
+
+				\workitem{Utilized various lab devices and chemicals to prepare, stain, and analyze brain tissue samples of mice}
+			\end{itemize}
+		\end{minipage}
+		\vspace{1.75em}
+		\\
+%----------------------------------------------------------------------------------
+		\worksub
+			{Factory Five}
+			{Shanghai, China}
+			{Shop Assistant}
+			{May 2014 - July 2014}
+		\hspace*{2.0em}
+		\begin{minipage}{0.9\textwidth}
+			\begin{itemize}
+				\normalsize
+
+				\workitem{Worked at Factory Five, a bicycle designing and distributing company}
+
+				\workitem{Received orders from customers and assembled bicycles according to specification}
+			\end{itemize}
+		\end{minipage}
+		\vspace{1.75em}
+		\\
+%----------------------------------------------------------------------------------
+		\worksub
+			{Fairfax County Public Schools}
+			{Chantilly, VA}
+			{IT Intern}
+			{June 2013 - August 2013}
+		\hspace*{2.0em}
+		\begin{minipage}{0.9\textwidth}
+			\begin{itemize}
+				\normalsize
+
+				\workitem{Internship assisting the technology specialist of Chantilly High School}
+
+				\workitem{Performed troubleshooting and repairs for faculty and staff}
+
+				\workitem{Managed Active Directory, inventory, re-imaging and computer lab setups}
+			\end{itemize}
+		\end{minipage}
+		\vspace{1.75em}
+		\\
+%----------------------------------------------------------------------------------
+	\end{flushleft}
+}
+
+\newcommand{\presentationsection}{
+	\begin{itemize}
+		\item
+		KairosVM: Deterministic Introspection for Real-time Virtual Machine Hierarchical Scheduling
+
+		\begin{itemize}
+			\item
+			Naval Engineering Consortium Annual Meeting -- April, 2016
+		\end{itemize}
+	\end{itemize}
+}
+
+\newcommand{\interestsection}{
+	\hspace*{0.30em}
+	\begin{tabularx}
+		{\textwidth}
+		{ X X }
+		$\bullet$ Virtual Reality &  $\bullet$ 3D Modeling \& Sculpting\\
+		$\bullet$ Game Engine Development & $\bullet$ Android Development \\
+		$\bullet$ The MEAN Stack & $\bullet$ Amazon Web Services \\
+	\end{tabularx}
+	\vspace{0.50em}
+	\\
+}
+
+\begin{document}
+
+\title{R\'esum\'e}
+\author{Alexander Fulton Sung}
+
+\headersection
+
+\gensection{Objective} 
+	Recent graduated, I am seeking an internship or full-time position to develop my skills in creating great application software. I strongly believe in products that are versatile and robust, which ultimately begin with careful architecture and clean code. As a software developer and lifelong learner, I am committed to maintaining familiarity with the latest technologies and best practices.
+
+\gensection{Education} %---------------------------------------------------------------
+\educationsection
+	{Virginia Polytechnic Institute and State University} % University
+	{Bachelor of Science in Computer Science} % Major
+	{May 2018} %Graduation Date
+
+\gensection{Technical Skills} %--------------------------------------------------------
+
+\technicalsection
+
+\gensection{Work Experience} %---------------------------------------------------------
+
+\worksection
+
+\gensection{Presentations} %--------------------------------------------------------
+
+\presentationsection
+
+\gensection{Current Interests} %--------------------------------------------------------
+
+\interestsection
+
+% Add "Side Projects" section when enough
+
+\end{document}
